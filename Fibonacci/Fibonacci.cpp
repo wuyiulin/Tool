@@ -2,6 +2,7 @@
 #include <iostream>
 #include <stdbool.h>
 #include <vector>
+#include <time.h>
 using namespace std;
 
 
@@ -17,7 +18,7 @@ vector<vector<int>> multiply(vector<vector<int>> A, vector<vector<int>> B)
     A[0][1] = M01;
     A[1][0] = M10;
     A[1][1] = M11;
-    cout << "A[0][0]: " << A[0][0] << "\n";
+    //cout << "A[0][0]: " << A[0][0] << "\n";
     return A;
 }
 
@@ -72,7 +73,7 @@ int fibonacci_matrix(int n)
         A[0][1] = M01;
         A[1][0] = M10;
         A[1][1] = M11;
-        cout << "A[0][0]: " << A[0][0] << "\n";
+        //cout << "A[0][0]: " << A[0][0] << "\n";
     }
     return A[0][0];
 }
@@ -96,12 +97,28 @@ int fibonacci_pow_matrix(int n)
 
 int main()
 {
+    clock_t start, end;
     string s = "111111111111111111111111111111111111111111111";
     int k = s.size();
     cout << "size of string s : " << k << "\n";
+    start = clock();
     cout << "This is Rec sol: " << fibonacci_rec(k) << "\n";
+    end = clock();
+    double diff = end - start;
+    cout << "Rec time: " << diff  << " ms\n";
+    
+    start = clock();
     cout << "This is Mat sol: " << fibonacci_matrix(k) << "\n";
+    end = clock();
+    diff = end - start;
+    cout << "Mat time: " << diff << " ms\n";
+
+    start = clock();
     cout << "This is Pow sol: " << fibonacci_pow_matrix(k) << "\n";
+    end = clock();
+    diff = end - start;
+    cout << "Pow time: " << diff << " ms\n";
+    
     system("pause");
     getchar();    
     return 0;
